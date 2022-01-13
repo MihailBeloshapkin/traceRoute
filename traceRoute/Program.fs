@@ -19,7 +19,10 @@ let getRouteInfo (ip : string) =
             | IPStatus.TtlExpired -> sub (ttl + 1) ((ttl, reply.Address.ToString()) :: data)
             | IPStatus.TimedOut -> sub (ttl + 1) ((ttl, "#########") :: data)
             | _ -> failwith "Something is wrong"
-    sub 1 []
+    try
+        sub 1 []
+    with 
+    | :? PingException as ex -> printfn "%s" ex.Message; []
 
 
 [<EntryPoint>]
