@@ -1,11 +1,10 @@
 ﻿open System
 open System.Net.NetworkInformation
 
-let timeout = 10000
-let maxTtl = 30
-let sizeOfBuffer = 32
-
 let getRouteInfo (ip : string) =
+    let timeout = 10000
+    let maxTtl = 30
+    let sizeOfBuffer = 16
     let buffer : byte [] = Array.zeroCreate sizeOfBuffer
     let rnd = new Random()
     rnd.NextBytes(buffer)
